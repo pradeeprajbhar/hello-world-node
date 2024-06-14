@@ -1,27 +1,16 @@
-name: Node.js CI
+name: ci
 
-on: [push]
+on:
+  push:
+    branches: main
 
 jobs:
-  build:
-
+  login:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-      - run: npm run build --if-present
       -
         name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-    
-
-
- 
